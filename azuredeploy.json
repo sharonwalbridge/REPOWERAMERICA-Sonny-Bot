@@ -31,7 +31,8 @@
         "South Central US",
         "Southeast Asia",
         "West Europe",
-        "West US"
+        "West US",
+        "West US 2"
       ],
       "metadata": {
         "description": "The location to use for creating the web app, hosting plan and storage account"
