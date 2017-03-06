@@ -55,10 +55,11 @@ module.exports = (robot) ->
     )
 
   robot.respond /quote (.+)/i, (msg) ->
-    address      = msg.match[2]
-    key         = process.env.HUBOT_GOOGLE_API_KEY
-
-    ##if !key
+    address			= msg.match[1]
+    googleApiKey	= process.env.HUBOT_GOOGLE_API_KEY
+	googleApiUrl	= "https://maps.googleapis.com/maps/api/geocode/json"
+	
+    ##if !googleApiKey
     ##  msg.send "Please enter your Google API key in the environment variable SONNY_GOOGLE_API_KEY."
 
     url         = "https://dev-api.repoweramerica.io/quote"
