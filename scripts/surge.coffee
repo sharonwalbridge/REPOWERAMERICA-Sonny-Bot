@@ -71,18 +71,22 @@ module.exports = (robot) ->
       googleJsonBody = JSON.parse(body)
       latitude = googleJsonBody.results[0].geometry.location.lat
       longitude = googleJsonBody.results[0].geometry.location.lng
-      ##msg.send "Geocoding successful - Latitude #{googleJsonBody.results[0].geometry.location.lat}"
-      ##return
-    
-      msg.send "TEST #{latitude}"
+      streetNumber = googleJsonBody.results[0].address_components[0].long_name
+      streetName = googleJsonBody.results[0].address_components[1].long_name
+      city = googleJsonBody.results[0].address_components[3].long_name
+      stateCode = googleJsonBody.results[0].address_components[5].short_name
+      country = googleJsonBody.results[0].address_components[6].long_name
+      postalCode = googleJsonBody.results[0].address_components[7].short_name
+      msg.send "Geocoding successful - Latitude: #{latitude} / Longitude: #{longitude}"
+
       surgeUrl	= "https://dev-api.repoweramerica.io/quote"
       payload 	= JSON.stringify({
    		  address: {
-   			  street: 		"353 Warren Drive",
-   			  city:			"San Francisco",
-   			  postalCode:		"94131",
-   			  stateCode:		"CA",
-   			  country:		"United States"
+   			  street: 		"#{streetNumber} #{streetName}",
+   			  city:			"#{city}",
+   			  postalCode:		"#{postalCode}",
+   			  stateCode:		"#{stateCode}",
+   			  country:		"#{country}"
    		  },
    		  location: {
    			  id:				null,
@@ -91,8 +95,8 @@ module.exports = (robot) ->
    			  pixelsToMeters:	17,
    			  orientation:	    0,
    			  returnPolygon:	true,
-   			  latitude:		37.755674793682495,
-   			  longitude:		-122.46153362698362
+   			  latitude:         latitude,
+   			  longitude:		longitude
    		  },
    		  optimizeFor:		"default",
    		  financeOptions:		[
