@@ -93,7 +93,6 @@ module.exports = (robot) ->
       jsonBody = JSON.parse(body)
       response = "Response: #{body}"
       msg.send response
-    )
     
   robot.respond /(?:(roadmap|terrain|hybrid)[- ])?map (.+)/i, (msg) ->
     mapType  = msg.match[1] or "satellite"
