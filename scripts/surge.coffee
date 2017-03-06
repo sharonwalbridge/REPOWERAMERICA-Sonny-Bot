@@ -69,7 +69,7 @@ module.exports = (robot) ->
     msg.send "Verifying, geocoding address using Google Maps API"
     robot.http(googleUrl).query(googleQuery).get() (err, res, body) ->
       googleJsonBody = JSON.parse(body)
-      latitide = googleJsonBody.results[0].geometry.location.lat
+      latitude = googleJsonBody.results[0].geometry.location.lat
       longitude = googleJsonBody.results[0].geometry.location.lng
       ##msg.send "Geocoding successful - Latitude #{googleJsonBody.results[0].geometry.location.lat}"
       ##return
