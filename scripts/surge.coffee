@@ -53,7 +53,7 @@ module.exports = (robot) ->
       msg.send response
     )
 
-  robot.respond quote (.+)/i, (msg) ->
+  robot.respond /quote (.+)/i, (msg) ->
     address      = msg.match[2]
     key         = process.env.HUBOT_GOOGLE_API_KEY
 
