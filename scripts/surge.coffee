@@ -72,7 +72,7 @@ module.exports = (robot) ->
       googleJsonBody = JSON.parse(body)
       geocode.latitide = googleJsonBody.results[0].geometry.location.lat
       geocode.longitude = googleJsonBody.results[0].geometry.location.lng
-      msg.send "Geocoding successful - Latitude #{geocode.latitude}"
+      msg.send "Geocoding successful - Latitude #{geocode.latitude} / #{googleJsonBody.results[0].geometry.location.lat}"
       return
     
     msg.send "TEST #{geocode.latitude}"
