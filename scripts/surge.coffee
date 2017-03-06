@@ -59,9 +59,9 @@ module.exports = (robot) ->
     googleApiKey	= process.env.SONNY_GOOGLE_API_KEY
     googleUrl		= "https://maps.googleapis.com/api/geocode/json"
     googleQuery 	=
-    	address:  address
-      key:      googleApiKey
-      sensor:   false
+      address:        address
+      key:            googleApiKey
+      sensor:         false
         
     ##if !googleApiKey
     ##  msg.send "Please enter your Google API key in the environment variable SONNY_GOOGLE_API_KEY."
@@ -69,7 +69,7 @@ module.exports = (robot) ->
     msg.send "Verifying, geocoding address using Google Maps API"
     robot.http(googleUrl).query(googleQuery).get()((err, res, body) ->
       jsonBody = JSON.parse(body)
-      msg.send "Results: #{jsonBody}"
+      msg.send "Results: #{body}"
       return
     )
 
