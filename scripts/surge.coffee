@@ -78,42 +78,42 @@ module.exports = (robot) ->
       ##msg.send "Geocoding successful - Latitude #{googleJsonBody.results[0].geometry.location.lat}"
       ##return
     
-    msg.send "TEST #{geocode.latitude}"
-    surgeUrl	= "https://dev-api.repoweramerica.io/quote"
-    payload 	= JSON.stringify({
-   		address: {
-   			street: 		"353 Warren Drive",
-   			city:			"San Francisco",
-   			postalCode:		"94131",
-   			stateCode:		"CA",
-   			country:		"United States"
-   		},
-   		location: {
-   			id:				null,
-   			static:			null,
-   			satellite:		null,
-   			pixelsToMeters:	17,
-   			orientation:	0,
-   			returnPolygon:	true,
-   			latitude:		37.755674793682495,
-   			longitude:		-122.46153362698362
-   		},
-   		optimizeFor:		"default",
-   		financeOptions:		[
-   			"cash",
-   			"loan",
-   			"ppa"
-   		]
-   	})
+      msg.send "TEST #{geocode.latitude}"
+      surgeUrl	= "https://dev-api.repoweramerica.io/quote"
+      payload 	= JSON.stringify({
+   		  address: {
+   			  street: 		"353 Warren Drive",
+   			  city:			"San Francisco",
+   			  postalCode:		"94131",
+   			  stateCode:		"CA",
+   			  country:		"United States"
+   		  },
+   		  location: {
+   			  id:				null,
+   			  static:			null,
+   			  satellite:		null,
+   			  pixelsToMeters:	17,
+   			  orientation:	    0,
+   			  returnPolygon:	true,
+   			  latitude:		37.755674793682495,
+   			  longitude:		-122.46153362698362
+   		  },
+   		  optimizeFor:		"default",
+   		  financeOptions:		[
+   			  "cash",
+   			  "loan",
+   			  "ppa"
+   		  ]
+   	  })
    	
-   	msg.send "Sending quote request for #{address}"
-    #robot.http(surgeUrl).header('Content-Type', 'application/json').header('Authorization', 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6Im1nb2xpY2hlbmtvQHNvbGFydW5pdmVyc2UuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImlzcyI6Imh0dHBzOi8vcmVwb3dlci5hdXRoMC5jb20vIiwic3ViIjoiZ29vZ2xlLW9hdXRoMnwxMTM5MTUwMjE2MTI3NzExODEzNjYiLCJhdWQiOiJtSnVCZGRLS2NYemkwemkzcW15cUZQb0lKOUV6TzBDQyIsImV4cCI6MTQ4ODgzNDg1MiwiaWF0IjoxNDg4MjMwMDUyfQ.0hyPH5SRbjHFjKETQSXi0vx9rNPgJ355Nce4ROWAe9c').post(payload) (err, res, body) ->
-    #  jsonBody = JSON.parse(body)
-    #  quoteId = jsonBody.id
-    #  if !quoteId
-    #  	msg.send "Error:  Quote not created - #{body}"
-    #  	return
-    #  msg.send "Quote successfully created, ID: #{quoteId}"
+   	  msg.send "Sending quote request for #{address}"
+      #robot.http(surgeUrl).header('Content-Type', 'application/json').header('Authorization', 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6Im1nb2xpY2hlbmtvQHNvbGFydW5pdmVyc2UuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImlzcyI6Imh0dHBzOi8vcmVwb3dlci5hdXRoMC5jb20vIiwic3ViIjoiZ29vZ2xlLW9hdXRoMnwxMTM5MTUwMjE2MTI3NzExODEzNjYiLCJhdWQiOiJtSnVCZGRLS2NYemkwemkzcW15cUZQb0lKOUV6TzBDQyIsImV4cCI6MTQ4ODgzNDg1MiwiaWF0IjoxNDg4MjMwMDUyfQ.0hyPH5SRbjHFjKETQSXi0vx9rNPgJ355Nce4ROWAe9c').post(payload) (err, res, body) ->
+      #  jsonBody = JSON.parse(body)
+      #  quoteId = jsonBody.id
+      #  if !quoteId
+      #  	msg.send "Error:  Quote not created - #{body}"
+      #  	return
+      #  msg.send "Quote successfully created, ID: #{quoteId}"
       
     
   robot.respond /(?:(roadmap|terrain|hybrid)[- ])?map (.+)/i, (msg) ->
