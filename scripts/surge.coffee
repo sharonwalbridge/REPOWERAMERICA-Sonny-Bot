@@ -57,6 +57,7 @@ module.exports = (robot) ->
   robot.respond /quote (.+)/i, (msg) ->
     address			= msg.match[1]
     googleApiKey	= process.env.HUBOT_GOOGLE_API_KEY
+	googleUrl		= "https://maps.googleapis.com/api/geocode/json"
 
     surgeUrl	= "https://dev-api.repoweramerica.io/quote"
     payload 	= JSON.stringify({
