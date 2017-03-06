@@ -2,7 +2,8 @@
 #   Interacts with the Google Maps API.
 #
 # Commands:
-#   hubot map <query> - Returns a map view of the area returned by `query`.
+#   hubot map <address> - Returns a satellite map view of the `address`.
+# 	hubot quote <address> - Fires off a SURGE quote for `address`.
 
 module.exports = (robot) ->
 
