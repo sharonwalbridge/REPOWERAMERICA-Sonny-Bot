@@ -67,15 +67,16 @@ module.exports = (robot) ->
     ##  msg.send "Please enter your Google API key in the environment variable SONNY_GOOGLE_API_KEY."
 
     msg.send "Verifying, geocoding address using Google Maps API"
-    geocode = this
+    geocode = {}
     robot.http(googleUrl).query(googleQuery).get() (err, res, body) ->
       googleJsonBody = JSON.parse(body)
+      geocode.body = body
       geocode.latitide = googleJsonBody.results[0].geometry.location.lat
       geocode.longitude = googleJsonBody.results[0].geometry.location.lng
-      msg.send "Geocoding successful - Latitude #{geocode.latitude} / #{googleJsonBody.results[0].geometry.location.lat}"
+      ##msg.send "Geocoding successful - Latitude #{googleJsonBody.results[0].geometry.location.lat}"
       return
     
-    msg.send "TEST #{geocode.latitude}"
+    msg.send "TEST #{geocode.body}"
     surgeUrl	= "https://dev-api.repoweramerica.io/quote"
     payload 	= JSON.stringify({
    		address: {
