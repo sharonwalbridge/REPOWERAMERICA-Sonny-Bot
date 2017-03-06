@@ -57,7 +57,7 @@ module.exports = (robot) ->
   robot.respond /quote (.+)/i, (msg) ->
     address			= msg.match[1]
     googleApiKey	= process.env.SONNY_GOOGLE_API_KEY
-    googleUrl		= "https://maps.googleapis.com/api/geocode/json"
+    googleUrl		= "https://maps.googleapis.com/maps/api/geocode/json"
     googleQuery 	=
       address:        address
       key:            googleApiKey
@@ -67,9 +67,9 @@ module.exports = (robot) ->
     ##  msg.send "Please enter your Google API key in the environment variable SONNY_GOOGLE_API_KEY."
 
     msg.send "Verifying, geocoding address using Google Maps API"
-    robot.http(googleUrl).query(googleQuery).get() (err, res, body) ->
+    robot.http(googleUrl).query(googleQuery).get()(err, res, body) ->
       msg.send "Results: #{body}"
-      return
+      process.exit(1)
 
     surgeUrl	= "https://dev-api.repoweramerica.io/quote"
     payload 	= JSON.stringify({
@@ -104,7 +104,7 @@ module.exports = (robot) ->
       quoteId = jsonBody.id
       if !quoteId
       	msg.send "Error:  Quote not created - #{body}"
-      	return
+      	process.exit(1)
       msg.send "Quote successfully created, ID: #{quoteId}"
       
     
