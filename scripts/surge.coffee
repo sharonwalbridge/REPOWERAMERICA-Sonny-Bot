@@ -62,30 +62,31 @@ module.exports = (robot) ->
 
     url         = "https://dev-api.repoweramerica.io/quote"
     payload 	= JSON.stringify({
-   					address: {
-   						street: 		"353 Warren Drive",
-   						city:			"San Francisco",
-   						postalCode:		"94131",
-   						stateCode:		"CA",
-   						country:		"United States"
-   					},
-   					location: {
-   						id:				null,
-   						static:			null,
-   						satellite:		null,
-   						pixelsToMeters:	17,
-   						orientation:	0,
-   						returnPolygon:	true,
-   						latitude:		37.755674793682495,
-   						longitude:		-122.46153362698362
-   					},
-   					optimizeFor:		"default",
-   					financeOptions:		[
-   						"cash",
-   						"loan",
-   						"ppa"
-   					]
-   				)};
+   		address: {
+   			street: 		"353 Warren Drive",
+   			city:			"San Francisco",
+   			postalCode:		"94131",
+   			stateCode:		"CA",
+   			country:		"United States"
+   		},
+   		location: {
+   			id:				null,
+   			static:			null,
+   			satellite:		null,
+   			pixelsToMeters:	17,
+   			orientation:	0,
+   			returnPolygon:	true,
+   			latitude:		37.755674793682495,
+   			longitude:		-122.46153362698362
+   		},
+   		optimizeFor:		"default",
+   		financeOptions:		[
+   			"cash",
+   			"loan",
+   			"ppa"
+   		]
+   	})
+   	
    	msg.send "Sending quote request"
    	
     robot.http(url).header('Content-Type', 'application/json').header('Authorization', 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbWFp').post(payload) (err, res, body) ->
