@@ -67,7 +67,7 @@ module.exports = (robot) ->
     ##  msg.send "Please enter your Google API key in the environment variable SONNY_GOOGLE_API_KEY."
 
     msg.send "Verifying, geocoding address using Google Maps API"
-    geocode = {}
+    geocode = this
     robot.http(googleUrl).query(googleQuery).get() (err, res, body) ->
       googleJsonBody = JSON.parse(body)
       geocode.body = body
@@ -105,13 +105,13 @@ module.exports = (robot) ->
    	})
    	
    	msg.send "Sending quote request for #{address}"
-    robot.http(surgeUrl).header('Content-Type', 'application/json').header('Authorization', 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6Im1nb2xpY2hlbmtvQHNvbGFydW5pdmVyc2UuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImlzcyI6Imh0dHBzOi8vcmVwb3dlci5hdXRoMC5jb20vIiwic3ViIjoiZ29vZ2xlLW9hdXRoMnwxMTM5MTUwMjE2MTI3NzExODEzNjYiLCJhdWQiOiJtSnVCZGRLS2NYemkwemkzcW15cUZQb0lKOUV6TzBDQyIsImV4cCI6MTQ4ODgzNDg1MiwiaWF0IjoxNDg4MjMwMDUyfQ.0hyPH5SRbjHFjKETQSXi0vx9rNPgJ355Nce4ROWAe9c').post(payload) (err, res, body) ->
-      jsonBody = JSON.parse(body)
-      quoteId = jsonBody.id
-      if !quoteId
-      	msg.send "Error:  Quote not created - #{body}"
-      	return
-      msg.send "Quote successfully created, ID: #{quoteId}"
+    #robot.http(surgeUrl).header('Content-Type', 'application/json').header('Authorization', 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6Im1nb2xpY2hlbmtvQHNvbGFydW5pdmVyc2UuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImlzcyI6Imh0dHBzOi8vcmVwb3dlci5hdXRoMC5jb20vIiwic3ViIjoiZ29vZ2xlLW9hdXRoMnwxMTM5MTUwMjE2MTI3NzExODEzNjYiLCJhdWQiOiJtSnVCZGRLS2NYemkwemkzcW15cUZQb0lKOUV6TzBDQyIsImV4cCI6MTQ4ODgzNDg1MiwiaWF0IjoxNDg4MjMwMDUyfQ.0hyPH5SRbjHFjKETQSXi0vx9rNPgJ355Nce4ROWAe9c').post(payload) (err, res, body) ->
+    #  jsonBody = JSON.parse(body)
+    #  quoteId = jsonBody.id
+    #  if !quoteId
+    #  	msg.send "Error:  Quote not created - #{body}"
+    #  	return
+    #  msg.send "Quote successfully created, ID: #{quoteId}"
       
     
   robot.respond /(?:(roadmap|terrain|hybrid)[- ])?map (.+)/i, (msg) ->
