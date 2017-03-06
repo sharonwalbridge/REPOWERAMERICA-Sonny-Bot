@@ -70,8 +70,8 @@ module.exports = (robot) ->
     geocode = this
     robot.http(googleUrl).query(googleQuery).get() (err, res, body) ->
       googleJsonBody = JSON.parse(body)
-      geocode.latitide = googleJsonBody.results.geometry.location.lat
-      geocode.longitude = googleJsonBody.results.geometry.location.lng
+      geocode.latitide = googleJsonBody.results[0].geometry.location.lat
+      geocode.longitude = googleJsonBody.results[0].geometry.location.lng
       msg.send "Geocoding successful - Latitude #{geocode.latitude}"
       return
     
