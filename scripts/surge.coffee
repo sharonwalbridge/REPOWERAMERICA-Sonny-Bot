@@ -67,7 +67,7 @@ module.exports = (robot) ->
     ##  msg.send "Please enter your Google API key in the environment variable SONNY_GOOGLE_API_KEY."
 
     msg.send "Verifying, geocoding address using Google Maps API"
-    robot.http(googleUrl).query(googleQuery).get()(err, res, body) ->
+    robot.http(googleUrl).query(googleQuery).get() (err, res, body) ->
       msg.send "Results: #{body}"
       process.exit(1)
 
