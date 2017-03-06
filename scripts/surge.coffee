@@ -68,7 +68,6 @@ module.exports = (robot) ->
 
     msg.send "Verifying, geocoding address using Google Maps API"
     robot.http(googleUrl).query(googleQuery).get() (err, res, body) ->
-      jsonBody = JSON.parse(body)
       msg.send "Results: #{body}"
       return
 
