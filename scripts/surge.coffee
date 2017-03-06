@@ -67,7 +67,7 @@ module.exports = (robot) ->
     ##  msg.send "Please enter your Google API key in the environment variable SONNY_GOOGLE_API_KEY."
 
     msg.send "Verifying, geocoding address using Google Maps API"
-    geocode = {}
+    geocode = this
     robot.http(googleUrl).query(googleQuery).get() (err, res, body) ->
       googleJsonBody = JSON.parse(body)
       geocode.latitide = googleJsonBody.results.geometry.location.lat
