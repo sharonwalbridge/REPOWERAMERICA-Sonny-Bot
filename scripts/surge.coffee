@@ -68,9 +68,13 @@ module.exports = (robot) ->
 
     msg.send "Verifying, geocoding address using Google Maps API"
     robot.http(googleUrl).query(googleQuery).get() (err, res, body) ->
-      msg.send "Results: #{body}"
+      googleJsonBody = JSON.parse(body)
+      latitide = googleJsonBody.results.geometry.location.lat
+      longitude = googleJsonBody.results.geometry.location.lng
+      msg.send "Geocoding successful - Latitude #{latitude}"
       return
-
+    
+    msg.send "TEST #{latitude}"
     surgeUrl	= "https://dev-api.repoweramerica.io/quote"
     payload 	= JSON.stringify({
    		address: {
