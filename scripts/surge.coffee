@@ -69,7 +69,6 @@ module.exports = (robot) ->
     msg.send "Verifying, geocoding address using Google Maps API"
     robot.http(googleUrl).query(googleQuery).get() (err, res, body) ->
       msg.send "Results: #{body}"
-      robot.emit 'error', err, res
       return
 
     surgeUrl	= "https://dev-api.repoweramerica.io/quote"
@@ -105,8 +104,7 @@ module.exports = (robot) ->
       quoteId = jsonBody.id
       if !quoteId
       	msg.send "Error:  Quote not created - #{body}"
-        robot.emit 'error', err, res
-        return
+      	return
       msg.send "Quote successfully created, ID: #{quoteId}"
       
     
