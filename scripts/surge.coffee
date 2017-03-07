@@ -107,7 +107,7 @@ module.exports = (robot) ->
    	  })
    	
    	  msg.send "Sending quote request for #{address}"
-      robot.http(surgeUrl).header('Content-Type', 'application/json').header('Authorization', 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6Im1nb2xpY2hlbmtvQHNvbGFydW5pdmVyc2UuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImlzcyI6Imh0dHBzOi8vcmVwb3dlci5hdXRoMC5jb20vIiwic3ViIjoiZ29vZ2xlLW9hdXRoMnwxMTM5MTUwMjE2MTI3NzExODEzNjYiLCJhdWQiOiJtSnVCZGRLS2NYemkwemkzcW15cUZQb0lKOUV6TzBDQyIsImV4cCI6MTQ4OTQzOTc1MCwiaWF0IjoxNDg4ODM0OTUwfQ.qXplDltC6ie6ovdfHS_on5Vqe2o5EySeDrg6HhegrL4').post(payload) (err, res, body) ->
+      robot.http(surgeUrl).header('Content-Type', 'application/json').header('Authorization', 'Basic ' + new Buffer('solar-admin@solaruniverse.com:6e4346a862594b68804ea13b44901cf6').toString('base64')).post(payload) (err, res, body) ->
         jsonBody = JSON.parse(body)
         quoteId = jsonBody.id
         if !quoteId
