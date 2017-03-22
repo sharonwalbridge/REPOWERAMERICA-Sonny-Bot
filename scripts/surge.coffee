@@ -99,7 +99,7 @@ module.exports = (robot) ->
    			  latitude:         latitude,
    			  longitude:		longitude
    		  },
-   		  debugLiveDisplayId:  {#debugLiveDisplayId},
+   		  debugLiveDisplayId:  	#{debugLiveDisplayId},
    		  optimizeFor:		"default",
    		  financeOptions:		[
    			  "cash",
