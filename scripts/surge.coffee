@@ -3,7 +3,7 @@
 #
 # Commands:
 #   hubot map <address> - Returns a satellite map view of the `address`.
-# 	hubot quote <address> - Fires off a SURGE quote for `address`.
+# 	hubot quote <address> debug-display-id <1-4> - Fires off a SURGE quote for `address`, `debug-display-id (1-4)` optional
 
 module.exports = (robot) ->
 
