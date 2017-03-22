@@ -80,7 +80,7 @@ module.exports = (robot) ->
       country = ""
       postalCode = ""
       components = googleJsonBody.results[0].address_components
-      for (var i = 0, component; component = components[i]; i++) {
+      for (i = 0, component; component = components[i]; i++) {
           if (component.types[0] == 'street_number') {
               streetNumber = component.long_name
           }
