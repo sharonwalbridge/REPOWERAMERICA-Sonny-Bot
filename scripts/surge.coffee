@@ -56,7 +56,7 @@ module.exports = (robot) ->
 
   robot.respond /quote (.+) display (\d)/i, (msg) ->
     address					= msg.match[1]
-    debugLiveDisplayId 		= msg.match[3] || 0
+    debugLiveDisplayId 		= msg.match[2] || 0
     googleApiKey			= process.env.SONNY_GOOGLE_API_KEY
     googleUrl				= "https://maps.googleapis.com/maps/api/geocode/json"
     googleQuery 			=
