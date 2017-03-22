@@ -54,11 +54,12 @@ module.exports = (robot) ->
       msg.send response
     )
 
-  robot.respond /quote (.+)/i, (msg) ->
-    address			= msg.match[1]
-    googleApiKey	= process.env.SONNY_GOOGLE_API_KEY
-    googleUrl		= "https://maps.googleapis.com/maps/api/geocode/json"
-    googleQuery 	=
+  robot.respond /quote (.+) (debug-display-id (\d))?/i, (msg) ->
+    address					= msg.match[1]
+    debugLiveDisplayId 		= msg.match[2] || 0
+    googleApiKey			= process.env.SONNY_GOOGLE_API_KEY
+    googleUrl				= "https://maps.googleapis.com/maps/api/geocode/json"
+    googleQuery 			=
       address:        address
       key:            googleApiKey
       sensor:         false
@@ -98,6 +99,7 @@ module.exports = (robot) ->
    			  latitude:         latitude,
    			  longitude:		longitude
    		  },
+   		  debugLiveDisplayId:  {#debugLiveDisplayId},
    		  optimizeFor:		"default",
    		  financeOptions:		[
    			  "cash",
@@ -107,6 +109,8 @@ module.exports = (robot) ->
    	  })
    	
    	  msg.send "Sending quote request for #{address}"
+      if debugVideoDisplayId > 0
+           msg.send "Live Remote Display \##{debugVideoDisplayId} activated for debug"
       robot.http(surgeUrl).header('Content-Type', 'application/json').header('Authorization', 'Basic ' + new Buffer('solar-admin@solaruniverse.com:6e4346a862594b68804ea13b44901cf6').toString('base64')).post(payload) (err, res, body) ->
         jsonBody = JSON.parse(body)
         quoteId = jsonBody.id
