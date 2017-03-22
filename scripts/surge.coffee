@@ -72,16 +72,35 @@ module.exports = (robot) ->
       googleJsonBody = JSON.parse(body)
       latitude = googleJsonBody.results[0].geometry.location.lat
       longitude = googleJsonBody.results[0].geometry.location.lng
-      streetNumber = googleJsonBody.results[0].address_components[0].long_name
-      streetName = googleJsonBody.results[0].address_components[1].long_name
-      city = googleJsonBody.results[0].address_components[3].long_name
-      stateCode = googleJsonBody.results[0].address_components[5].short_name
-      country = googleJsonBody.results[0].address_components[6].long_name
-      postalCode = googleJsonBody.results[0].address_components[7].short_name
+      
+      streetNumber = ""
+      streetName = ""
+      city = ""
+      stateCode = ""
+      country = ""
+      postalCode = ""
+      components = googleJsonBody.results[0].address_components
+      for (var i = 0, component; component = components[i]; i++) {
+          if (component.types[0] == 'street_number') {
+              streetNumber = component.long_name
+          }
+          if (component.types[0] == 'route') {
+              streetName = component.long_name
+          }
+          if (component.types[0] == 'locality') {
+              city = component.long_name
+          }
+          if (component.types[0] == 'administrative_area_level_1') {
+              stateCode = component.short_name
+          }
+          if (component.types[0] == 'country') {
+              country = component.long_name
+          }
+          if (component.types[0] == 'postal_code') {
+              postalCode = component.short_name
+          }
+      }
       msg.send "Geocoding successful - Latitude: #{latitude} / Longitude: #{longitude}"
-
-      msg.send "Data:  #{body}"
-      return
 
       surgeUrl	= "https://dev-api.repoweramerica.io/quote"
       payload 	= JSON.stringify({
