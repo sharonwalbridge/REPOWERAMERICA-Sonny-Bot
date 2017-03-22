@@ -54,7 +54,7 @@ module.exports = (robot) ->
       msg.send response
     )
 
-  robot.respond /quote (.+) display (\d)/i, (msg) ->
+  robot.respond /quote (.+)( display (\d))?/i, (msg) ->
     address					= msg.match[1]
     debugLiveDisplayId 		= msg.match[2] || 0
     googleApiKey			= process.env.SONNY_GOOGLE_API_KEY
