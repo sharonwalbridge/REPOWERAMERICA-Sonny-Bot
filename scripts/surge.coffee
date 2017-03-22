@@ -80,26 +80,25 @@ module.exports = (robot) ->
       country = ""
       postalCode = ""
       components = googleJsonBody.results[0].address_components
-      for (i = 0, component; component = components[i]; i++) {
-          if (component.types[0] == 'street_number') {
+      for component in components
+          if (component.types[0] == 'street_number') 
               streetNumber = component.long_name
-          }
-          if (component.types[0] == 'route') {
+          
+          if (component.types[0] == 'route') 
               streetName = component.long_name
-          }
-          if (component.types[0] == 'locality') {
+          
+          if (component.types[0] == 'locality') 
               city = component.long_name
-          }
-          if (component.types[0] == 'administrative_area_level_1') {
+          
+          if (component.types[0] == 'administrative_area_level_1') 
               stateCode = component.short_name
-          }
-          if (component.types[0] == 'country') {
+          
+          if (component.types[0] == 'country') 
               country = component.long_name
-          }
-          if (component.types[0] == 'postal_code') {
+          
+          if (component.types[0] == 'postal_code') 
               postalCode = component.short_name
-          }
-      }
+          
       msg.send "Geocoding successful - Latitude: #{latitude} / Longitude: #{longitude}"
 
       surgeUrl	= "https://dev-api.repoweramerica.io/quote"
