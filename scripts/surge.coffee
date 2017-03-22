@@ -80,6 +80,9 @@ module.exports = (robot) ->
       postalCode = googleJsonBody.results[0].address_components[7].short_name
       msg.send "Geocoding successful - Latitude: #{latitude} / Longitude: #{longitude}"
 
+      msg.send "Data:  #{googleJsonBody}"
+      return
+
       surgeUrl	= "https://dev-api.repoweramerica.io/quote"
       payload 	= JSON.stringify({
    		  address: {
