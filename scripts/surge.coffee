@@ -54,7 +54,7 @@ module.exports = (robot) ->
       msg.send response
     )
 
-  robot.respond /quote (.+) (debug-display-id (\d))?/i, (msg) ->
+  robot.respond /quote (.+) ([display ](\d))?/i, (msg) ->
     address					= msg.match[1]
     debugLiveDisplayId 		= msg.match[2] || 0
     googleApiKey			= process.env.SONNY_GOOGLE_API_KEY
@@ -109,8 +109,8 @@ module.exports = (robot) ->
    	  })
    	
    	  msg.send "Sending quote request for #{address}"
-      if debugVideoDisplayId > 0
-           msg.send "Live Remote Display \##{debugVideoDisplayId} activated for debug"
+      if debugLiveDisplayId > 0
+           msg.send "Live Remote Display \##{debugLiveDisplayId} activated for debug"
       robot.http(surgeUrl).header('Content-Type', 'application/json').header('Authorization', 'Basic ' + new Buffer('solar-admin@solaruniverse.com:6e4346a862594b68804ea13b44901cf6').toString('base64')).post(payload) (err, res, body) ->
         jsonBody = JSON.parse(body)
         quoteId = jsonBody.id
