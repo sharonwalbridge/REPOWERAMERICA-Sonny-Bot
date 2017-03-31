@@ -188,10 +188,7 @@ module.exports = (robot) ->
       msg.send "Geocoding successful - Latitude: #{latitude} / Longitude: #{longitude}"
 
       surgeUrl	= "https://dev-api.repoweramerica.io/quote/roof"
-      payload 	= JSON.stringify({
-   		  latitude:         latitude,
-          longitude:		longitude
-      })
+      payload 	= JSON.stringify({ latitude: latitude, longitude: longitude })
    	
    	  msg.send "Sending ML design request for #{address}"
       robot.http(surgeUrl).header('Content-Type', 'application/json').header('Authorization', 'Basic ' + new Buffer('solar-admin@solaruniverse.com:6e4346a862594b68804ea13b44901cf6').toString('base64')).post(payload) (err, res, body) ->
